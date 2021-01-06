@@ -2,10 +2,12 @@ class PostsController < ApplicationController
   def index # indxアクションを定義した
     @posts = Post.all.order(id: "DESC")
   end
+
   def create
-    Post.post.create(content: params[:content],chacked: false)
-    render json:{ post: post } 
+    post = Post.create(content: params[:content], checked: false)
+    render json:{ post: post }
   end
+
   def checked
     post = Post.find(params[:id])
     if post.checked
